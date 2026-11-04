@@ -1,0 +1,577 @@
+{
+  "groups": [
+    {
+      "scenario": "point_read",
+      "phase": "",
+      "engine": "sqlite_wal_normal",
+      "workers": 1,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 200000.0
+      },
+      "metrics_min": {
+        "ops_per_s": 196000.0
+      },
+      "metrics_max": {
+        "ops_per_s": 204000.0
+      }
+    },
+    {
+      "scenario": "point_read",
+      "phase": "",
+      "engine": "postgres",
+      "workers": 1,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 10000.0
+      },
+      "metrics_min": {
+        "ops_per_s": 9800.0
+      },
+      "metrics_max": {
+        "ops_per_s": 10200.0
+      }
+    },
+    {
+      "scenario": "point_read",
+      "phase": "",
+      "engine": "postgres_unix",
+      "workers": 1,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 8000.0
+      },
+      "metrics_min": {
+        "ops_per_s": 7840.0
+      },
+      "metrics_max": {
+        "ops_per_s": 8160.0
+      }
+    },
+    {
+      "scenario": "user_read",
+      "phase": "",
+      "engine": "sqlite_wal_normal",
+      "workers": 1,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 50000.0
+      },
+      "metrics_min": {
+        "ops_per_s": 49000.0
+      },
+      "metrics_max": {
+        "ops_per_s": 51000.0
+      }
+    },
+    {
+      "scenario": "user_read",
+      "phase": "",
+      "engine": "postgres",
+      "workers": 1,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 100000.0
+      },
+      "metrics_min": {
+        "ops_per_s": 98000.0
+      },
+      "metrics_max": {
+        "ops_per_s": 102000.0
+      }
+    },
+    {
+      "scenario": "user_read",
+      "phase": "",
+      "engine": "postgres_unix",
+      "workers": 1,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 90000.0
+      },
+      "metrics_min": {
+        "ops_per_s": 88200.0
+      },
+      "metrics_max": {
+        "ops_per_s": 91800.0
+      }
+    },
+    {
+      "scenario": "single_insert",
+      "phase": "",
+      "engine": "sqlite_wal_normal",
+      "workers": 1,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 35000.0
+      },
+      "metrics_min": {
+        "ops_per_s": 34300.0
+      },
+      "metrics_max": {
+        "ops_per_s": 35700.0
+      }
+    },
+    {
+      "scenario": "single_insert",
+      "phase": "",
+      "engine": "sqlite_wal_full",
+      "workers": 1,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 700.0
+      },
+      "metrics_min": {
+        "ops_per_s": 686.0
+      },
+      "metrics_max": {
+        "ops_per_s": 714.0
+      }
+    },
+    {
+      "scenario": "single_insert",
+      "phase": "",
+      "engine": "postgres",
+      "workers": 1,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 1100.0
+      },
+      "metrics_min": {
+        "ops_per_s": 1078.0
+      },
+      "metrics_max": {
+        "ops_per_s": 1122.0
+      }
+    },
+    {
+      "scenario": "single_insert",
+      "phase": "",
+      "engine": "postgres_unix",
+      "workers": 1,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 790.0
+      },
+      "metrics_min": {
+        "ops_per_s": 774.1999999999999
+      },
+      "metrics_max": {
+        "ops_per_s": 805.8000000000001
+      }
+    },
+    {
+      "scenario": "concurrent_read",
+      "phase": "",
+      "engine": "sqlite_wal_normal",
+      "workers": 1,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 250000.0
+      },
+      "metrics_min": {
+        "ops_per_s": 245000.0
+      },
+      "metrics_max": {
+        "ops_per_s": 255000.0
+      }
+    },
+    {
+      "scenario": "concurrent_read",
+      "phase": "",
+      "engine": "sqlite_wal_normal",
+      "workers": 4,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 900000.0
+      },
+      "metrics_min": {
+        "ops_per_s": 882000.0
+      },
+      "metrics_max": {
+        "ops_per_s": 918000.0
+      }
+    },
+    {
+      "scenario": "concurrent_read",
+      "phase": "",
+      "engine": "sqlite_wal_normal",
+      "workers": 16,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 890000.0
+      },
+      "metrics_min": {
+        "ops_per_s": 872200.0
+      },
+      "metrics_max": {
+        "ops_per_s": 907800.0
+      }
+    },
+    {
+      "scenario": "concurrent_read",
+      "phase": "",
+      "engine": "postgres",
+      "workers": 1,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 10000.0
+      },
+      "metrics_min": {
+        "ops_per_s": 9800.0
+      },
+      "metrics_max": {
+        "ops_per_s": 10200.0
+      }
+    },
+    {
+      "scenario": "concurrent_read",
+      "phase": "",
+      "engine": "postgres",
+      "workers": 4,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 35000.0
+      },
+      "metrics_min": {
+        "ops_per_s": 34300.0
+      },
+      "metrics_max": {
+        "ops_per_s": 35700.0
+      }
+    },
+    {
+      "scenario": "concurrent_read",
+      "phase": "",
+      "engine": "postgres",
+      "workers": 16,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 190000.0
+      },
+      "metrics_min": {
+        "ops_per_s": 186200.0
+      },
+      "metrics_max": {
+        "ops_per_s": 193800.0
+      }
+    },
+    {
+      "scenario": "concurrent_write",
+      "phase": "",
+      "engine": "sqlite_wal_normal",
+      "workers": 1,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 27000.0,
+        "error_rate": 0.0
+      },
+      "metrics_min": {
+        "ops_per_s": 26460.0,
+        "error_rate": 0.0
+      },
+      "metrics_max": {
+        "ops_per_s": 27540.0,
+        "error_rate": 0.0
+      }
+    },
+    {
+      "scenario": "concurrent_write",
+      "phase": "",
+      "engine": "sqlite_wal_normal",
+      "workers": 4,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 97000.0,
+        "error_rate": 0.0
+      },
+      "metrics_min": {
+        "ops_per_s": 95060.0,
+        "error_rate": 0.0
+      },
+      "metrics_max": {
+        "ops_per_s": 98940.0,
+        "error_rate": 0.0
+      }
+    },
+    {
+      "scenario": "concurrent_write",
+      "phase": "",
+      "engine": "sqlite_wal_normal",
+      "workers": 16,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 39000.0,
+        "error_rate": 0.0,
+        "p50_ms": 0.017,
+        "p90_ms": 0.039,
+        "p99_ms": 1.8,
+        "p999_ms": 4.2,
+        "max_ms": 5007.3
+      },
+      "metrics_min": {
+        "ops_per_s": 38220.0,
+        "error_rate": 0.0,
+        "p50_ms": 0.01666,
+        "p90_ms": 0.03822,
+        "p99_ms": 1.764,
+        "p999_ms": 4.116,
+        "max_ms": 4907.154
+      },
+      "metrics_max": {
+        "ops_per_s": 39780.0,
+        "error_rate": 0.0,
+        "p50_ms": 0.01734,
+        "p90_ms": 0.03978,
+        "p99_ms": 1.836,
+        "p999_ms": 4.284000000000001,
+        "max_ms": 5107.446
+      }
+    },
+    {
+      "scenario": "concurrent_write",
+      "phase": "",
+      "engine": "sqlite_wal_full",
+      "workers": 1,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 1100.0,
+        "error_rate": 0.0
+      },
+      "metrics_min": {
+        "ops_per_s": 1078.0,
+        "error_rate": 0.0
+      },
+      "metrics_max": {
+        "ops_per_s": 1122.0,
+        "error_rate": 0.0
+      }
+    },
+    {
+      "scenario": "concurrent_write",
+      "phase": "",
+      "engine": "sqlite_wal_full",
+      "workers": 4,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 3100.0,
+        "error_rate": 0.0
+      },
+      "metrics_min": {
+        "ops_per_s": 3038.0,
+        "error_rate": 0.0
+      },
+      "metrics_max": {
+        "ops_per_s": 3162.0,
+        "error_rate": 0.0
+      }
+    },
+    {
+      "scenario": "concurrent_write",
+      "phase": "",
+      "engine": "sqlite_wal_full",
+      "workers": 16,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 1200.0,
+        "error_rate": 0.0,
+        "p50_ms": 0.728,
+        "p90_ms": 1.5,
+        "p99_ms": 3.7,
+        "p999_ms": 2037.6,
+        "max_ms": 2832.7
+      },
+      "metrics_min": {
+        "ops_per_s": 1176.0,
+        "error_rate": 0.0,
+        "p50_ms": 0.71344,
+        "p90_ms": 1.47,
+        "p99_ms": 3.626,
+        "p999_ms": 1996.848,
+        "max_ms": 2776.046
+      },
+      "metrics_max": {
+        "ops_per_s": 1224.0,
+        "error_rate": 0.0,
+        "p50_ms": 0.74256,
+        "p90_ms": 1.53,
+        "p99_ms": 3.7740000000000005,
+        "p999_ms": 2078.352,
+        "max_ms": 2889.354
+      }
+    },
+    {
+      "scenario": "concurrent_write",
+      "phase": "",
+      "engine": "postgres",
+      "workers": 1,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 750.0,
+        "error_rate": 0.0
+      },
+      "metrics_min": {
+        "ops_per_s": 735.0,
+        "error_rate": 0.0
+      },
+      "metrics_max": {
+        "ops_per_s": 765.0,
+        "error_rate": 0.0
+      }
+    },
+    {
+      "scenario": "concurrent_write",
+      "phase": "",
+      "engine": "postgres",
+      "workers": 4,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 2300.0,
+        "error_rate": 0.0
+      },
+      "metrics_min": {
+        "ops_per_s": 2254.0,
+        "error_rate": 0.0
+      },
+      "metrics_max": {
+        "ops_per_s": 2346.0,
+        "error_rate": 0.0
+      }
+    },
+    {
+      "scenario": "concurrent_write",
+      "phase": "",
+      "engine": "postgres",
+      "workers": 16,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 7400.0,
+        "error_rate": 0.0,
+        "p50_ms": 1.5,
+        "p90_ms": 1.9,
+        "p99_ms": 19.7,
+        "p999_ms": 23.3,
+        "max_ms": 24.4
+      },
+      "metrics_min": {
+        "ops_per_s": 7252.0,
+        "error_rate": 0.0,
+        "p50_ms": 1.47,
+        "p90_ms": 1.8619999999999999,
+        "p99_ms": 19.305999999999997,
+        "p999_ms": 22.834,
+        "max_ms": 23.912
+      },
+      "metrics_max": {
+        "ops_per_s": 7548.0,
+        "error_rate": 0.0,
+        "p50_ms": 1.53,
+        "p90_ms": 1.938,
+        "p99_ms": 20.094,
+        "p999_ms": 23.766000000000002,
+        "max_ms": 24.887999999999998
+      }
+    },
+    {
+      "scenario": "concurrent_write",
+      "phase": "",
+      "engine": "sqlite_wal_nowait",
+      "workers": 1,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 30000.0,
+        "error_rate": 0.0
+      },
+      "metrics_min": {
+        "ops_per_s": 29400.0,
+        "error_rate": 0.0
+      },
+      "metrics_max": {
+        "ops_per_s": 30600.0,
+        "error_rate": 0.0
+      }
+    },
+    {
+      "scenario": "concurrent_write",
+      "phase": "",
+      "engine": "sqlite_wal_nowait",
+      "workers": 4,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 48000.0,
+        "error_rate": 0.7097
+      },
+      "metrics_min": {
+        "ops_per_s": 47040.0,
+        "error_rate": 0.7097
+      },
+      "metrics_max": {
+        "ops_per_s": 48960.0,
+        "error_rate": 0.7097
+      }
+    },
+    {
+      "scenario": "concurrent_write",
+      "phase": "",
+      "engine": "sqlite_wal_nowait",
+      "workers": 16,
+      "repeats": 3,
+      "metrics": {
+        "ops_per_s": 28000.0,
+        "error_rate": 0.9476
+      },
+      "metrics_min": {
+        "ops_per_s": 27440.0,
+        "error_rate": 0.9476
+      },
+      "metrics_max": {
+        "ops_per_s": 28560.0,
+        "error_rate": 0.9476
+      }
+    },
+    {
+      "scenario": "aggregate",
+      "phase": "",
+      "engine": "sqlite_wal_normal",
+      "workers": 1,
+      "repeats": 3,
+      "metrics": {
+        "by_status_median_ms": 7.9,
+        "top_users_median_ms": 16.7,
+        "results_match": true
+      },
+      "metrics_min": {
+        "by_status_median_ms": 7.742,
+        "top_users_median_ms": 16.366,
+        "results_match": true
+      },
+      "metrics_max": {
+        "by_status_median_ms": 8.058,
+        "top_users_median_ms": 17.034,
+        "results_match": true
+      }
+    },
+    {
+      "scenario": "aggregate",
+      "phase": "",
+      "engine": "postgres",
+      "workers": 1,
+      "repeats": 3,
+      "metrics": {
+        "by_status_median_ms": 4.9,
+        "top_users_median_ms": 5.7,
+        "results_match": true
+      },
+      "metrics_min": {
+        "by_status_median_ms": 4.8020000000000005,
+        "top_users_median_ms": 5.586,
+        "results_match": true
+      },
+      "metrics_max": {
+        "by_status_median_ms": 4.998,
+        "top_users_median_ms": 5.814,
+        "results_match": true
+      }
+    }
+  ]
+}

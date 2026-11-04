@@ -1,0 +1,1504 @@
+{
+  "groups": [
+    {
+      "scenario": "footprint",
+      "phase": "start",
+      "engine": "postgres",
+      "workers": 1,
+      "repeats": 5,
+      "metrics": {
+        "start_seconds": 0.1074559130029229,
+        "idle_rss_mb": 43.8125,
+        "idle_pss_mb": 16.044921875
+      },
+      "metrics_min": {
+        "start_seconds": 0.103211983001529,
+        "idle_rss_mb": 43.5,
+        "idle_pss_mb": 15.97265625
+      },
+      "metrics_max": {
+        "start_seconds": 0.10998394499983988,
+        "idle_rss_mb": 43.9375,
+        "idle_pss_mb": 16.099609375
+      }
+    },
+    {
+      "scenario": "footprint",
+      "phase": "start",
+      "engine": "sqlite_wal_normal",
+      "workers": 1,
+      "repeats": 5,
+      "metrics": {
+        "sqlite_connect_ms": 0.450591
+      },
+      "metrics_min": {
+        "sqlite_connect_ms": 0.346102
+      },
+      "metrics_max": {
+        "sqlite_connect_ms": 0.721862
+      }
+    },
+    {
+      "scenario": "seed",
+      "phase": "",
+      "engine": "sqlite_wal_normal",
+      "workers": 1,
+      "repeats": 5,
+      "metrics": {
+        "load_seconds": 1.9141818019852508,
+        "rows_per_second": 522416.41779420973,
+        "index_seconds": 0.3913517820001289,
+        "analyze_seconds": 0.0353882050003449
+      },
+      "metrics_min": {
+        "load_seconds": 1.8622180730162654,
+        "rows_per_second": 514635.1414016626,
+        "index_seconds": 0.38568778799890424,
+        "analyze_seconds": 0.03497654100283398
+      },
+      "metrics_max": {
+        "load_seconds": 1.94312420499773,
+        "rows_per_second": 536994.0365685978,
+        "index_seconds": 0.40183188100127154,
+        "analyze_seconds": 0.03703059200051939
+      }
+    },
+    {
+      "scenario": "seed",
+      "phase": "",
+      "engine": "postgres",
+      "workers": 1,
+      "repeats": 5,
+      "metrics": {
+        "load_seconds": 10.850706296023418,
+        "rows_per_second": 92159.89933913163,
+        "index_seconds": 0.5067697519989451,
+        "analyze_seconds": 0.18399000999852433
+      },
+      "metrics_min": {
+        "load_seconds": 10.4831667160106,
+        "rows_per_second": 90294.28016794326,
+        "index_seconds": 0.49497277100090287,
+        "analyze_seconds": 0.17727896100041107
+      },
+      "metrics_max": {
+        "load_seconds": 11.074898633003613,
+        "rows_per_second": 95391.02325566686,
+        "index_seconds": 2.7321083290007664,
+        "analyze_seconds": 2.2210084369980905
+      }
+    },
+    {
+      "scenario": "footprint",
+      "phase": "sizes",
+      "engine": "postgres",
+      "workers": 1,
+      "repeats": 1,
+      "metrics": {
+        "pg_database_bytes": 206976703.0,
+        "data_dir_bytes": 683555782.0
+      },
+      "metrics_min": {
+        "pg_database_bytes": 206976703.0,
+        "data_dir_bytes": 683555782.0
+      },
+      "metrics_max": {
+        "pg_database_bytes": 206976703.0,
+        "data_dir_bytes": 683555782.0
+      }
+    },
+    {
+      "scenario": "footprint",
+      "phase": "sizes",
+      "engine": "sqlite_wal_normal",
+      "workers": 1,
+      "repeats": 1,
+      "metrics": {
+        "sqlite_file_bytes": 164655104.0
+      },
+      "metrics_min": {
+        "sqlite_file_bytes": 164655104.0
+      },
+      "metrics_max": {
+        "sqlite_file_bytes": 164655104.0
+      }
+    },
+    {
+      "scenario": "single_insert",
+      "phase": "",
+      "engine": "sqlite_wal_full",
+      "workers": 1,
+      "repeats": 5,
+      "metrics": {
+        "ops": 5000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 1139.5595305490797,
+        "p50_ms": 0.722,
+        "p90_ms": 1.452,
+        "p95_ms": 1.546,
+        "p99_ms": 2.187,
+        "p999_ms": 5.716,
+        "max_ms": 6.897645
+      },
+      "metrics_min": {
+        "ops": 5000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 1094.2416714042206,
+        "p50_ms": 0.709,
+        "p90_ms": 1.408,
+        "p95_ms": 1.493,
+        "p99_ms": 1.825,
+        "p999_ms": 5.124,
+        "max_ms": 5.948852
+      },
+      "metrics_max": {
+        "ops": 5000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 1157.3842559715056,
+        "p50_ms": 0.733,
+        "p90_ms": 1.507,
+        "p95_ms": 1.623,
+        "p99_ms": 2.453,
+        "p999_ms": 6.086,
+        "max_ms": 15.868069
+      }
+    },
+    {
+      "scenario": "single_insert",
+      "phase": "",
+      "engine": "postgres_unix",
+      "workers": 1,
+      "repeats": 5,
+      "metrics": {
+        "ops": 5000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 1183.70115432181,
+        "p50_ms": 0.823,
+        "p90_ms": 0.921,
+        "p95_ms": 0.973,
+        "p99_ms": 1.15,
+        "p999_ms": 5.313,
+        "max_ms": 5.553523
+      },
+      "metrics_min": {
+        "ops": 5000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 847.6390702956818,
+        "p50_ms": 0.802,
+        "p90_ms": 0.901,
+        "p95_ms": 0.945,
+        "p99_ms": 1.084,
+        "p999_ms": 5.251,
+        "max_ms": 5.375201
+      },
+      "metrics_max": {
+        "ops": 5000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 1220.1722505745322,
+        "p50_ms": 0.832,
+        "p90_ms": 1.001,
+        "p95_ms": 2.89,
+        "p99_ms": 13.224,
+        "p999_ms": 17.728,
+        "max_ms": 22.489002
+      }
+    },
+    {
+      "scenario": "single_insert",
+      "phase": "",
+      "engine": "sqlite_wal_normal",
+      "workers": 1,
+      "repeats": 5,
+      "metrics": {
+        "ops": 5000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 34425.24661661447,
+        "p50_ms": 0.013,
+        "p90_ms": 0.017,
+        "p95_ms": 0.021,
+        "p99_ms": 0.048,
+        "p999_ms": 4.608,
+        "max_ms": 5.589283
+      },
+      "metrics_min": {
+        "ops": 5000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 6625.517880789306,
+        "p50_ms": 0.013,
+        "p90_ms": 0.017,
+        "p95_ms": 0.019,
+        "p99_ms": 0.045,
+        "p999_ms": 4.444,
+        "max_ms": 4.72202
+      },
+      "metrics_max": {
+        "ops": 5000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 35608.50682955138,
+        "p50_ms": 0.014,
+        "p90_ms": 0.039,
+        "p95_ms": 0.051,
+        "p99_ms": 0.133,
+        "p999_ms": 40.771,
+        "max_ms": 61.526889
+      }
+    },
+    {
+      "scenario": "single_insert",
+      "phase": "",
+      "engine": "postgres",
+      "workers": 1,
+      "repeats": 5,
+      "metrics": {
+        "ops": 5000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 1190.6411104286856,
+        "p50_ms": 0.828,
+        "p90_ms": 0.919,
+        "p95_ms": 0.97,
+        "p99_ms": 1.122,
+        "p999_ms": 5.322,
+        "max_ms": 5.423314
+      },
+      "metrics_min": {
+        "ops": 5000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 1148.1627646768832,
+        "p50_ms": 0.806,
+        "p90_ms": 0.907,
+        "p95_ms": 0.946,
+        "p99_ms": 1.043,
+        "p999_ms": 5.238,
+        "max_ms": 5.32073
+      },
+      "metrics_max": {
+        "ops": 5000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 1213.6680386564872,
+        "p50_ms": 0.846,
+        "p90_ms": 0.943,
+        "p95_ms": 1.0,
+        "p99_ms": 1.471,
+        "p999_ms": 5.364,
+        "max_ms": 8.025093
+      }
+    },
+    {
+      "scenario": "point_read",
+      "phase": "",
+      "engine": "postgres",
+      "workers": 1,
+      "repeats": 5,
+      "metrics": {
+        "ops": 50000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 11618.670641563232,
+        "p50_ms": 0.071,
+        "p90_ms": 0.125,
+        "p95_ms": 0.151,
+        "p99_ms": 0.224,
+        "p999_ms": 0.336,
+        "max_ms": 1.513745
+      },
+      "metrics_min": {
+        "ops": 50000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 10669.456788227671,
+        "p50_ms": 0.068,
+        "p90_ms": 0.107,
+        "p95_ms": 0.133,
+        "p99_ms": 0.204,
+        "p999_ms": 0.306,
+        "max_ms": 0.654279
+      },
+      "metrics_max": {
+        "ops": 50000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 12462.093318604817,
+        "p50_ms": 0.072,
+        "p90_ms": 0.145,
+        "p95_ms": 0.177,
+        "p99_ms": 0.258,
+        "p999_ms": 0.378,
+        "max_ms": 4.903511
+      }
+    },
+    {
+      "scenario": "point_read",
+      "phase": "",
+      "engine": "sqlite_wal_normal",
+      "workers": 1,
+      "repeats": 5,
+      "metrics": {
+        "ops": 50000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 168617.31551919272,
+        "p50_ms": 0.004,
+        "p90_ms": 0.006,
+        "p95_ms": 0.006,
+        "p99_ms": 0.015,
+        "p999_ms": 0.074,
+        "max_ms": 0.252062
+      },
+      "metrics_min": {
+        "ops": 50000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 165757.6890715412,
+        "p50_ms": 0.004,
+        "p90_ms": 0.005,
+        "p95_ms": 0.006,
+        "p99_ms": 0.01,
+        "p999_ms": 0.057,
+        "max_ms": 0.186005
+      },
+      "metrics_max": {
+        "ops": 50000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 180099.6402700591,
+        "p50_ms": 0.005,
+        "p90_ms": 0.006,
+        "p95_ms": 0.007,
+        "p99_ms": 0.017,
+        "p999_ms": 0.103,
+        "max_ms": 1.667934
+      }
+    },
+    {
+      "scenario": "point_read",
+      "phase": "",
+      "engine": "postgres_unix",
+      "workers": 1,
+      "repeats": 5,
+      "metrics": {
+        "ops": 50000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 11731.826511051318,
+        "p50_ms": 0.068,
+        "p90_ms": 0.124,
+        "p95_ms": 0.144,
+        "p99_ms": 0.225,
+        "p999_ms": 0.319,
+        "max_ms": 1.395454
+      },
+      "metrics_min": {
+        "ops": 50000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 11180.885406613956,
+        "p50_ms": 0.067,
+        "p90_ms": 0.117,
+        "p95_ms": 0.139,
+        "p99_ms": 0.195,
+        "p999_ms": 0.296,
+        "max_ms": 0.740574
+      },
+      "metrics_max": {
+        "ops": 50000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 12281.36559753237,
+        "p50_ms": 0.069,
+        "p90_ms": 0.132,
+        "p95_ms": 0.153,
+        "p99_ms": 0.228,
+        "p999_ms": 0.322,
+        "max_ms": 1.972067
+      }
+    },
+    {
+      "scenario": "user_read",
+      "phase": "",
+      "engine": "postgres_unix",
+      "workers": 1,
+      "repeats": 5,
+      "metrics": {
+        "ops": 20000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 8671.847755764304,
+        "p50_ms": 0.104,
+        "p90_ms": 0.152,
+        "p95_ms": 0.183,
+        "p99_ms": 0.257,
+        "p999_ms": 0.374,
+        "max_ms": 0.805649
+      },
+      "metrics_min": {
+        "ops": 20000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 7028.206751610058,
+        "p50_ms": 0.103,
+        "p90_ms": 0.149,
+        "p95_ms": 0.179,
+        "p99_ms": 0.255,
+        "p999_ms": 0.347,
+        "max_ms": 0.536311
+      },
+      "metrics_max": {
+        "ops": 20000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 8758.338554124206,
+        "p50_ms": 0.128,
+        "p90_ms": 0.197,
+        "p95_ms": 0.239,
+        "p99_ms": 0.319,
+        "p999_ms": 0.446,
+        "max_ms": 2.403971
+      }
+    },
+    {
+      "scenario": "user_read",
+      "phase": "",
+      "engine": "sqlite_wal_normal",
+      "workers": 1,
+      "repeats": 5,
+      "metrics": {
+        "ops": 20000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 36044.683382888405,
+        "p50_ms": 0.024,
+        "p90_ms": 0.035,
+        "p95_ms": 0.042,
+        "p99_ms": 0.075,
+        "p999_ms": 0.181,
+        "max_ms": 0.295534
+      },
+      "metrics_min": {
+        "ops": 20000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 34197.16483104408,
+        "p50_ms": 0.024,
+        "p90_ms": 0.035,
+        "p95_ms": 0.041,
+        "p99_ms": 0.071,
+        "p999_ms": 0.175,
+        "max_ms": 0.285777
+      },
+      "metrics_max": {
+        "ops": 20000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 37288.16453894806,
+        "p50_ms": 0.026,
+        "p90_ms": 0.038,
+        "p95_ms": 0.045,
+        "p99_ms": 0.084,
+        "p999_ms": 0.205,
+        "max_ms": 0.334719
+      }
+    },
+    {
+      "scenario": "user_read",
+      "phase": "",
+      "engine": "postgres",
+      "workers": 1,
+      "repeats": 5,
+      "metrics": {
+        "ops": 20000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 8215.825526800036,
+        "p50_ms": 0.108,
+        "p90_ms": 0.165,
+        "p95_ms": 0.195,
+        "p99_ms": 0.277,
+        "p999_ms": 0.372,
+        "max_ms": 0.619118
+      },
+      "metrics_min": {
+        "ops": 20000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 7397.9740725680995,
+        "p50_ms": 0.108,
+        "p90_ms": 0.159,
+        "p95_ms": 0.19,
+        "p99_ms": 0.258,
+        "p999_ms": 0.35,
+        "max_ms": 0.474454
+      },
+      "metrics_max": {
+        "ops": 20000.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 8326.013511616251,
+        "p50_ms": 0.118,
+        "p90_ms": 0.19,
+        "p95_ms": 0.218,
+        "p99_ms": 0.293,
+        "p999_ms": 0.41,
+        "max_ms": 2.107608
+      }
+    },
+    {
+      "scenario": "aggregate",
+      "phase": "",
+      "engine": "sqlite_wal_normal",
+      "workers": 1,
+      "repeats": 5,
+      "metrics": {
+        "by_status_median_ms": 151.444602,
+        "by_status_min_ms": 144.915593,
+        "top_users_median_ms": 1130.28886,
+        "top_users_min_ms": 1113.848514,
+        "results_match": true
+      },
+      "metrics_min": {
+        "by_status_median_ms": 144.341213,
+        "by_status_min_ms": 143.73058,
+        "top_users_median_ms": 1081.282275,
+        "top_users_min_ms": 1076.40425,
+        "results_match": true
+      },
+      "metrics_max": {
+        "by_status_median_ms": 155.749858,
+        "by_status_min_ms": 148.037813,
+        "top_users_median_ms": 1174.658961,
+        "top_users_min_ms": 1153.500994,
+        "results_match": true
+      }
+    },
+    {
+      "scenario": "aggregate",
+      "phase": "",
+      "engine": "postgres",
+      "workers": 1,
+      "repeats": 5,
+      "metrics": {
+        "by_status_median_ms": 130.233396,
+        "by_status_min_ms": 127.605965,
+        "top_users_median_ms": 1778.685619,
+        "top_users_min_ms": 1713.264392,
+        "results_match": true
+      },
+      "metrics_min": {
+        "by_status_median_ms": 128.001932,
+        "by_status_min_ms": 123.282915,
+        "top_users_median_ms": 1698.174684,
+        "top_users_min_ms": 1670.922022,
+        "results_match": true
+      },
+      "metrics_max": {
+        "by_status_median_ms": 131.896551,
+        "by_status_min_ms": 130.299454,
+        "top_users_median_ms": 1794.902824,
+        "top_users_min_ms": 1766.170195,
+        "results_match": true
+      }
+    },
+    {
+      "scenario": "concurrent_read",
+      "phase": "",
+      "engine": "sqlite_wal_normal",
+      "workers": 1,
+      "repeats": 5,
+      "metrics": {
+        "ops": 1810177.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 181017.65945204426,
+        "p50_ms": 0.004,
+        "p90_ms": 0.005,
+        "p95_ms": 0.006,
+        "p99_ms": 0.012,
+        "p999_ms": 0.061,
+        "max_ms": 0.374992
+      },
+      "metrics_min": {
+        "ops": 1755972.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 175597.11996283272,
+        "p50_ms": 0.004,
+        "p90_ms": 0.005,
+        "p95_ms": 0.005,
+        "p99_ms": 0.01,
+        "p999_ms": 0.052,
+        "max_ms": 0.348407
+      },
+      "metrics_max": {
+        "ops": 1902053.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 190205.26507831336,
+        "p50_ms": 0.004,
+        "p90_ms": 0.005,
+        "p95_ms": 0.006,
+        "p99_ms": 0.014,
+        "p999_ms": 0.082,
+        "max_ms": 1.563837
+      }
+    },
+    {
+      "scenario": "concurrent_read",
+      "phase": "",
+      "engine": "postgres",
+      "workers": 1,
+      "repeats": 5,
+      "metrics": {
+        "ops": 112954.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 11295.396779682378,
+        "p50_ms": 0.071,
+        "p90_ms": 0.133,
+        "p95_ms": 0.162,
+        "p99_ms": 0.242,
+        "p999_ms": 0.33,
+        "max_ms": 2.116029
+      },
+      "metrics_min": {
+        "ops": 87509.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 8750.823666565157,
+        "p50_ms": 0.069,
+        "p90_ms": 0.119,
+        "p95_ms": 0.143,
+        "p99_ms": 0.204,
+        "p999_ms": 0.31,
+        "max_ms": 1.311614
+      },
+      "metrics_max": {
+        "ops": 120844.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 12084.253861492776,
+        "p50_ms": 0.095,
+        "p90_ms": 0.174,
+        "p95_ms": 0.203,
+        "p99_ms": 0.272,
+        "p999_ms": 0.41,
+        "max_ms": 4.790307
+      }
+    },
+    {
+      "scenario": "concurrent_read",
+      "phase": "",
+      "engine": "postgres",
+      "workers": 4,
+      "repeats": 5,
+      "metrics": {
+        "ops": 334885.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 33488.3090798011,
+        "p50_ms": 0.112,
+        "p90_ms": 0.142,
+        "p95_ms": 0.166,
+        "p99_ms": 0.231,
+        "p999_ms": 0.329,
+        "max_ms": 2.122475
+      },
+      "metrics_min": {
+        "ops": 309788.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 30978.57840403296,
+        "p50_ms": 0.109,
+        "p90_ms": 0.135,
+        "p95_ms": 0.162,
+        "p99_ms": 0.225,
+        "p999_ms": 0.318,
+        "max_ms": 1.896544
+      },
+      "metrics_max": {
+        "ops": 342433.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 34242.28482925435,
+        "p50_ms": 0.119,
+        "p90_ms": 0.165,
+        "p95_ms": 0.19,
+        "p99_ms": 0.245,
+        "p999_ms": 0.365,
+        "max_ms": 5.166269
+      }
+    },
+    {
+      "scenario": "concurrent_read",
+      "phase": "",
+      "engine": "sqlite_wal_normal",
+      "workers": 4,
+      "repeats": 5,
+      "metrics": {
+        "ops": 6406401.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 640638.8451806939,
+        "p50_ms": 0.005,
+        "p90_ms": 0.006,
+        "p95_ms": 0.007,
+        "p99_ms": 0.014,
+        "p999_ms": 0.055,
+        "max_ms": 0.864568
+      },
+      "metrics_min": {
+        "ops": 6223652.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 622364.7309237022,
+        "p50_ms": 0.005,
+        "p90_ms": 0.006,
+        "p95_ms": 0.007,
+        "p99_ms": 0.012,
+        "p999_ms": 0.042,
+        "max_ms": 0.634829
+      },
+      "metrics_max": {
+        "ops": 6478518.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 647851.3352314521,
+        "p50_ms": 0.005,
+        "p90_ms": 0.007,
+        "p95_ms": 0.008,
+        "p99_ms": 0.015,
+        "p999_ms": 0.059,
+        "max_ms": 1.994856
+      }
+    },
+    {
+      "scenario": "concurrent_read",
+      "phase": "",
+      "engine": "postgres",
+      "workers": 16,
+      "repeats": 5,
+      "metrics": {
+        "ops": 1671082.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 167087.90007330035,
+        "p50_ms": 0.078,
+        "p90_ms": 0.186,
+        "p95_ms": 0.237,
+        "p99_ms": 0.359,
+        "p999_ms": 0.593,
+        "max_ms": 19.794028
+      },
+      "metrics_min": {
+        "ops": 1660383.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 166012.10302452336,
+        "p50_ms": 0.077,
+        "p90_ms": 0.181,
+        "p95_ms": 0.222,
+        "p99_ms": 0.312,
+        "p999_ms": 0.484,
+        "max_ms": 9.11089
+      },
+      "metrics_max": {
+        "ops": 1736128.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 173581.61155036307,
+        "p50_ms": 0.079,
+        "p90_ms": 0.188,
+        "p95_ms": 0.238,
+        "p99_ms": 0.367,
+        "p999_ms": 0.654,
+        "max_ms": 21.798657
+      }
+    },
+    {
+      "scenario": "concurrent_read",
+      "phase": "",
+      "engine": "sqlite_wal_normal",
+      "workers": 16,
+      "repeats": 5,
+      "metrics": {
+        "ops": 8583668.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 858069.1144582735,
+        "p50_ms": 0.011,
+        "p90_ms": 0.016,
+        "p95_ms": 0.019,
+        "p99_ms": 0.031,
+        "p999_ms": 4.037,
+        "max_ms": 13.703334
+      },
+      "metrics_min": {
+        "ops": 8452404.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 845232.96211898,
+        "p50_ms": 0.011,
+        "p90_ms": 0.015,
+        "p95_ms": 0.018,
+        "p99_ms": 0.026,
+        "p999_ms": 3.995,
+        "max_ms": 12.041507
+      },
+      "metrics_max": {
+        "ops": 9239438.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 923399.1635678818,
+        "p50_ms": 0.012,
+        "p90_ms": 0.017,
+        "p95_ms": 0.019,
+        "p99_ms": 0.033,
+        "p999_ms": 4.038,
+        "max_ms": 34.314461
+      }
+    },
+    {
+      "scenario": "concurrent_write",
+      "phase": "",
+      "engine": "sqlite_wal_normal",
+      "workers": 1,
+      "repeats": 5,
+      "metrics": {
+        "ops": 243980.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 24381.59515334733,
+        "p50_ms": 0.014,
+        "p90_ms": 0.021,
+        "p95_ms": 0.032,
+        "p99_ms": 0.139,
+        "p999_ms": 7.882,
+        "max_ms": 14.42832
+      },
+      "metrics_min": {
+        "ops": 173675.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 17358.285069694877,
+        "p50_ms": 0.014,
+        "p90_ms": 0.021,
+        "p95_ms": 0.029,
+        "p99_ms": 0.104,
+        "p999_ms": 7.677,
+        "max_ms": 13.558384
+      },
+      "metrics_max": {
+        "ops": 252613.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 25259.76050853214,
+        "p50_ms": 0.015,
+        "p90_ms": 0.023,
+        "p95_ms": 0.036,
+        "p99_ms": 0.173,
+        "p999_ms": 16.173,
+        "max_ms": 97.078556
+      }
+    },
+    {
+      "scenario": "concurrent_write",
+      "phase": "",
+      "engine": "sqlite_wal_nowait",
+      "workers": 1,
+      "repeats": 5,
+      "metrics": {
+        "ops": 250854.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 25073.420404542067,
+        "p50_ms": 0.014,
+        "p90_ms": 0.021,
+        "p95_ms": 0.031,
+        "p99_ms": 0.141,
+        "p999_ms": 7.619,
+        "max_ms": 15.13913
+      },
+      "metrics_min": {
+        "ops": 219303.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 21930.058442599264,
+        "p50_ms": 0.014,
+        "p90_ms": 0.021,
+        "p95_ms": 0.031,
+        "p99_ms": 0.135,
+        "p999_ms": 7.548,
+        "max_ms": 14.161154
+      },
+      "metrics_max": {
+        "ops": 256906.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 25690.50723671647,
+        "p50_ms": 0.014,
+        "p90_ms": 0.022,
+        "p95_ms": 0.035,
+        "p99_ms": 0.16,
+        "p999_ms": 8.092,
+        "max_ms": 53.306493
+      }
+    },
+    {
+      "scenario": "concurrent_write",
+      "phase": "",
+      "engine": "postgres",
+      "workers": 1,
+      "repeats": 5,
+      "metrics": {
+        "ops": 11357.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 1135.6317078787413,
+        "p50_ms": 0.852,
+        "p90_ms": 0.964,
+        "p95_ms": 1.031,
+        "p99_ms": 1.315,
+        "p999_ms": 5.407,
+        "max_ms": 9.102947
+      },
+      "metrics_min": {
+        "ops": 10285.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 1028.4493679977843,
+        "p50_ms": 0.844,
+        "p90_ms": 0.946,
+        "p95_ms": 0.986,
+        "p99_ms": 1.129,
+        "p999_ms": 5.38,
+        "max_ms": 5.598401
+      },
+      "metrics_max": {
+        "ops": 11601.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 1160.0846861860916,
+        "p50_ms": 0.858,
+        "p90_ms": 0.986,
+        "p95_ms": 1.086,
+        "p99_ms": 5.216,
+        "p999_ms": 16.506,
+        "max_ms": 23.469903
+      }
+    },
+    {
+      "scenario": "concurrent_write",
+      "phase": "",
+      "engine": "sqlite_wal_full",
+      "workers": 1,
+      "repeats": 5,
+      "metrics": {
+        "ops": 10970.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 1096.9490563694833,
+        "p50_ms": 0.728,
+        "p90_ms": 1.469,
+        "p95_ms": 1.575,
+        "p99_ms": 2.706,
+        "p999_ms": 6.717,
+        "max_ms": 21.014385
+      },
+      "metrics_min": {
+        "ops": 5366.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 536.5739096838729,
+        "p50_ms": 0.717,
+        "p90_ms": 1.44,
+        "p95_ms": 1.535,
+        "p99_ms": 1.814,
+        "p999_ms": 5.853,
+        "max_ms": 6.18243
+      },
+      "metrics_max": {
+        "ops": 11617.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 1161.63371567006,
+        "p50_ms": 0.772,
+        "p90_ms": 5.765,
+        "p95_ms": 5.991,
+        "p99_ms": 6.474,
+        "p999_ms": 17.44,
+        "max_ms": 33.700084
+      }
+    },
+    {
+      "scenario": "concurrent_write",
+      "phase": "",
+      "engine": "sqlite_wal_normal",
+      "workers": 4,
+      "repeats": 5,
+      "metrics": {
+        "ops": 499705.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 43710.51976378131,
+        "p50_ms": 0.017,
+        "p90_ms": 0.033,
+        "p95_ms": 0.048,
+        "p99_ms": 0.147,
+        "p999_ms": 3.644,
+        "max_ms": 3232.950065
+      },
+      "metrics_min": {
+        "ops": 412469.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 36540.56254054863,
+        "p50_ms": 0.017,
+        "p90_ms": 0.032,
+        "p95_ms": 0.045,
+        "p99_ms": 0.143,
+        "p999_ms": 3.333,
+        "max_ms": 1931.29269
+      },
+      "metrics_max": {
+        "ops": 615179.0,
+        "errors": 1.0,
+        "error_rate": 2.0011766918948342e-06,
+        "ops_per_s": 61172.46261491294,
+        "p50_ms": 0.018,
+        "p90_ms": 0.044,
+        "p95_ms": 0.06,
+        "p99_ms": 1.842,
+        "p999_ms": 5.945,
+        "max_ms": 4434.363326
+      }
+    },
+    {
+      "scenario": "concurrent_write",
+      "phase": "",
+      "engine": "sqlite_wal_full",
+      "workers": 4,
+      "repeats": 5,
+      "metrics": {
+        "ops": 15219.0,
+        "errors": 1.0,
+        "error_rate": 6.158773172384061e-05,
+        "ops_per_s": 1390.0689096145434,
+        "p50_ms": 0.722,
+        "p90_ms": 1.466,
+        "p95_ms": 1.557,
+        "p99_ms": 2.595,
+        "p999_ms": 630.895463,
+        "max_ms": 3633.454434
+      },
+      "metrics_min": {
+        "ops": 2396.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 194.75328764715556,
+        "p50_ms": 0.712,
+        "p90_ms": 1.428,
+        "p95_ms": 1.52,
+        "p99_ms": 2.202,
+        "p999_ms": 80.087,
+        "max_ms": 2532.909586
+      },
+      "metrics_max": {
+        "ops": 16236.0,
+        "errors": 3.0,
+        "error_rate": 0.0012505210504376823,
+        "ops_per_s": 1609.4415434930288,
+        "p50_ms": 5.92,
+        "p90_ms": 6.288,
+        "p95_ms": 6.824,
+        "p99_ms": 33.46,
+        "p999_ms": 2244.296491,
+        "max_ms": 5013.502392
+      }
+    },
+    {
+      "scenario": "concurrent_write",
+      "phase": "",
+      "engine": "postgres",
+      "workers": 4,
+      "repeats": 5,
+      "metrics": {
+        "ops": 27319.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 2731.537411899792,
+        "p50_ms": 1.392,
+        "p90_ms": 1.597,
+        "p95_ms": 1.684,
+        "p99_ms": 2.937,
+        "p999_ms": 6.249,
+        "max_ms": 18.915866
+      },
+      "metrics_min": {
+        "ops": 9122.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 912.0992054673724,
+        "p50_ms": 1.388,
+        "p90_ms": 1.581,
+        "p95_ms": 1.664,
+        "p99_ms": 2.409,
+        "p999_ms": 6.118,
+        "max_ms": 6.908699
+      },
+      "metrics_max": {
+        "ops": 27598.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 2759.53670018552,
+        "p50_ms": 5.532,
+        "p90_ms": 5.964,
+        "p95_ms": 6.081,
+        "p99_ms": 6.562,
+        "p999_ms": 18.383,
+        "max_ms": 72.19637
+      }
+    },
+    {
+      "scenario": "concurrent_write",
+      "phase": "",
+      "engine": "sqlite_wal_nowait",
+      "workers": 4,
+      "repeats": 5,
+      "metrics": {
+        "ops": 486136.0,
+        "errors": 1123358.0,
+        "error_rate": 0.6945385858339249,
+        "ops_per_s": 48373.379593002675,
+        "p50_ms": 0.022,
+        "p90_ms": 0.043,
+        "p95_ms": 0.054,
+        "p99_ms": 0.117,
+        "p999_ms": 3.609,
+        "max_ms": 35.53444
+      },
+      "metrics_min": {
+        "ops": 475440.0,
+        "errors": 1081025.0,
+        "error_rate": 0.6921407017354987,
+        "ops_per_s": 47539.88689177202,
+        "p50_ms": 0.022,
+        "p90_ms": 0.042,
+        "p95_ms": 0.052,
+        "p99_ms": 0.093,
+        "p999_ms": 2.918,
+        "max_ms": 27.632534
+      },
+      "metrics_max": {
+        "ops": 500053.0,
+        "errors": 1148937.0,
+        "error_rate": 0.6988582317367158,
+        "ops_per_s": 49815.10372381492,
+        "p50_ms": 0.022,
+        "p90_ms": 0.045,
+        "p95_ms": 0.057,
+        "p99_ms": 0.135,
+        "p999_ms": 4.0,
+        "max_ms": 126.788102
+      }
+    },
+    {
+      "scenario": "concurrent_write",
+      "phase": "",
+      "engine": "sqlite_wal_nowait",
+      "workers": 16,
+      "repeats": 5,
+      "metrics": {
+        "ops": 282381.0,
+        "errors": 4877119.0,
+        "error_rate": 0.9456177350941266,
+        "ops_per_s": 28058.55649565971,
+        "p50_ms": 0.036,
+        "p90_ms": 0.067,
+        "p95_ms": 0.083,
+        "p99_ms": 0.141,
+        "p999_ms": 12.348,
+        "max_ms": 65.877549
+      },
+      "metrics_min": {
+        "ops": 269092.0,
+        "errors": 4761260.0,
+        "error_rate": 0.9400280501510754,
+        "ops_per_s": 26887.39190261297,
+        "p50_ms": 0.033,
+        "p90_ms": 0.06,
+        "p95_ms": 0.075,
+        "p99_ms": 0.136,
+        "p999_ms": 12.097,
+        "max_ms": 36.751273
+      },
+      "metrics_max": {
+        "ops": 311537.0,
+        "errors": 4971871.0,
+        "error_rate": 0.9477106554705977,
+        "ops_per_s": 31027.598481305715,
+        "p50_ms": 0.037,
+        "p90_ms": 0.071,
+        "p95_ms": 0.087,
+        "p99_ms": 0.16,
+        "p999_ms": 12.504,
+        "max_ms": 185.802142
+      }
+    },
+    {
+      "scenario": "concurrent_write",
+      "phase": "",
+      "engine": "postgres",
+      "workers": 16,
+      "repeats": 5,
+      "metrics": {
+        "ops": 76703.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 7662.47991742938,
+        "p50_ms": 1.527,
+        "p90_ms": 5.634,
+        "p95_ms": 5.906,
+        "p99_ms": 6.291,
+        "p999_ms": 8.742,
+        "max_ms": 18.392515
+      },
+      "metrics_min": {
+        "ops": 27216.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 2720.162588835442,
+        "p50_ms": 1.454,
+        "p90_ms": 1.649,
+        "p95_ms": 1.722,
+        "p99_ms": 2.319,
+        "p999_ms": 6.198,
+        "max_ms": 11.472121
+      },
+      "metrics_max": {
+        "ops": 106034.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 10600.452145703886,
+        "p50_ms": 5.733,
+        "p90_ms": 6.207,
+        "p95_ms": 6.442,
+        "p99_ms": 8.564,
+        "p999_ms": 18.892,
+        "max_ms": 20.095668
+      }
+    },
+    {
+      "scenario": "concurrent_write",
+      "phase": "",
+      "engine": "sqlite_wal_full",
+      "workers": 16,
+      "repeats": 5,
+      "metrics": {
+        "ops": 13117.0,
+        "errors": 5.0,
+        "error_rate": 0.00038103947568968145,
+        "ops_per_s": 1081.229812609641,
+        "p50_ms": 0.739,
+        "p90_ms": 1.518,
+        "p95_ms": 1.71,
+        "p99_ms": 36.488,
+        "p999_ms": 2932.462139,
+        "max_ms": 5009.11831
+      },
+      "metrics_min": {
+        "ops": 2388.0,
+        "errors": 1.0,
+        "error_rate": 6.734913793103448e-05,
+        "ops_per_s": 201.55363624878785,
+        "p50_ms": 0.728,
+        "p90_ms": 1.492,
+        "p95_ms": 1.666,
+        "p99_ms": 19.07,
+        "p999_ms": 2531.955415,
+        "max_ms": 4335.110388
+      },
+      "metrics_max": {
+        "ops": 15464.0,
+        "errors": 13.0,
+        "error_rate": 0.005414410662224073,
+        "ops_per_s": 1307.6729903806995,
+        "p50_ms": 5.682,
+        "p90_ms": 6.232,
+        "p95_ms": 9.659,
+        "p99_ms": 1736.763131,
+        "p999_ms": 4040.692985,
+        "max_ms": 5021.521773
+      }
+    },
+    {
+      "scenario": "concurrent_write",
+      "phase": "",
+      "engine": "sqlite_wal_normal",
+      "workers": 16,
+      "repeats": 5,
+      "metrics": {
+        "ops": 537397.0,
+        "errors": 4.0,
+        "error_rate": 7.462561262963868e-06,
+        "ops_per_s": 40756.44183753432,
+        "p50_ms": 0.018,
+        "p90_ms": 0.039,
+        "p95_ms": 0.057,
+        "p99_ms": 1.849,
+        "p999_ms": 12.727,
+        "max_ms": 4734.879531
+      },
+      "metrics_min": {
+        "ops": 503685.0,
+        "errors": 2.0,
+        "error_rate": 3.970719911373531e-06,
+        "ops_per_s": 39237.14483738064,
+        "p50_ms": 0.018,
+        "p90_ms": 0.037,
+        "p95_ms": 0.051,
+        "p99_ms": 0.172,
+        "p999_ms": 8.319,
+        "max_ms": 3933.631715
+      },
+      "metrics_max": {
+        "ops": 579926.0,
+        "errors": 5.0,
+        "error_rate": 8.874106599318114e-06,
+        "ops_per_s": 42313.62613429414,
+        "p50_ms": 0.018,
+        "p90_ms": 0.04,
+        "p95_ms": 0.058,
+        "p99_ms": 1.887,
+        "p999_ms": 18.381,
+        "max_ms": 5006.587095
+      }
+    },
+    {
+      "scenario": "mixed",
+      "phase": "",
+      "engine": "postgres",
+      "workers": 16,
+      "repeats": 5,
+      "metrics": {
+        "ops": 525840.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 52564.390712120985,
+        "p50_ms": 0.148,
+        "p90_ms": 0.918,
+        "p95_ms": 1.528,
+        "p99_ms": 1.929,
+        "p999_ms": 5.694,
+        "max_ms": 25.760344,
+        "read_p99_ms": 0.357,
+        "write_p99_ms": 5.682
+      },
+      "metrics_min": {
+        "ops": 509790.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 50959.3268766789,
+        "p50_ms": 0.146,
+        "p90_ms": 0.896,
+        "p95_ms": 1.506,
+        "p99_ms": 1.898,
+        "p999_ms": 3.972,
+        "max_ms": 11.886146,
+        "read_p99_ms": 0.338,
+        "write_p99_ms": 3.893
+      },
+      "metrics_max": {
+        "ops": 548679.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 54844.04227123397,
+        "p50_ms": 0.153,
+        "p90_ms": 0.93,
+        "p95_ms": 1.553,
+        "p99_ms": 1.966,
+        "p999_ms": 13.083,
+        "max_ms": 38.158472,
+        "read_p99_ms": 0.388,
+        "write_p99_ms": 13.032
+      }
+    },
+    {
+      "scenario": "mixed",
+      "phase": "",
+      "engine": "sqlite_wal_normal",
+      "workers": 16,
+      "repeats": 5,
+      "metrics": {
+        "ops": 1687646.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 168543.45580022474,
+        "p50_ms": 0.005,
+        "p90_ms": 0.02,
+        "p95_ms": 0.039,
+        "p99_ms": 1.738,
+        "p999_ms": 18.346,
+        "max_ms": 331.035822,
+        "read_p99_ms": 0.024,
+        "write_p99_ms": 18.345
+      },
+      "metrics_min": {
+        "ops": 1605018.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 160277.52883087116,
+        "p50_ms": 0.005,
+        "p90_ms": 0.02,
+        "p95_ms": 0.037,
+        "p99_ms": 1.676,
+        "p999_ms": 8.417,
+        "max_ms": 229.079968,
+        "read_p99_ms": 0.023,
+        "write_p99_ms": 8.417
+      },
+      "metrics_max": {
+        "ops": 1781529.0,
+        "errors": 0.0,
+        "error_rate": 0.0,
+        "ops_per_s": 177261.8239376164,
+        "p50_ms": 0.006,
+        "p90_ms": 0.022,
+        "p95_ms": 0.043,
+        "p99_ms": 1.849,
+        "p999_ms": 18.378,
+        "max_ms": 429.271302,
+        "read_p99_ms": 0.028,
+        "write_p99_ms": 18.379
+      }
+    },
+    {
+      "scenario": "footprint",
+      "phase": "after_runs",
+      "engine": "postgres",
+      "workers": 1,
+      "repeats": 1,
+      "metrics": {
+        "rss_mb": 285.59375,
+        "pss_mb": 81.7158203125
+      },
+      "metrics_min": {
+        "rss_mb": 285.59375,
+        "pss_mb": 81.7158203125
+      },
+      "metrics_max": {
+        "rss_mb": 285.59375,
+        "pss_mb": 81.7158203125
+      }
+    }
+  ]
+}

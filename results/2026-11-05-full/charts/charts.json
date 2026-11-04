@@ -1,0 +1,569 @@
+{
+  "source": "summary.json",
+  "repeats": 5,
+  "machine": {
+    "cpu": "12th Gen Intel(R) Core(TM) i7-12700K",
+    "filesystem": "ext4",
+    "sqlite": "3.54.1",
+    "postgres": "18.6"
+  },
+  "charts": [
+    {
+      "id": "single-client-reads",
+      "title": "Reads from one client",
+      "subtitle": "queries per second, higher is better, log scale",
+      "form": "dot",
+      "unit": "ops_per_second",
+      "scale": "log",
+      "higher_is_better": true,
+      "categories": [
+        "Read one order by id",
+        "Newest 20 orders of one user"
+      ],
+      "series": [
+        {
+          "engine": "sqlite_wal_normal",
+          "label": "SQLite, NORMAL sync",
+          "color_dark": "#D95926",
+          "color_light": "#EB6834",
+          "hollow": false,
+          "points": [
+            {
+              "category": "Read one order by id",
+              "value": 168617.31551919272,
+              "min": 165757.6890715412,
+              "max": 180099.6402700591
+            },
+            {
+              "category": "Newest 20 orders of one user",
+              "value": 36044.683382888405,
+              "min": 34197.16483104408,
+              "max": 37288.16453894806
+            }
+          ]
+        },
+        {
+          "engine": "postgres",
+          "label": "PostgreSQL, TCP",
+          "color_dark": "#3987E5",
+          "color_light": "#2A78D6",
+          "hollow": false,
+          "points": [
+            {
+              "category": "Read one order by id",
+              "value": 11618.670641563232,
+              "min": 10669.456788227671,
+              "max": 12462.093318604817
+            },
+            {
+              "category": "Newest 20 orders of one user",
+              "value": 8215.825526800036,
+              "min": 7397.9740725680995,
+              "max": 8326.013511616251
+            }
+          ]
+        },
+        {
+          "engine": "postgres_unix",
+          "label": "PostgreSQL, Unix socket",
+          "color_dark": "#3987E5",
+          "color_light": "#2A78D6",
+          "hollow": true,
+          "points": [
+            {
+              "category": "Read one order by id",
+              "value": 11731.826511051318,
+              "min": 11180.885406613956,
+              "max": 12281.36559753237
+            },
+            {
+              "category": "Newest 20 orders of one user",
+              "value": 8671.847755764304,
+              "min": 7028.206751610058,
+              "max": 8758.338554124206
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "single-insert",
+      "title": "Inserts from one client, one commit each",
+      "subtitle": "inserts per second, higher is better, log scale",
+      "form": "dot",
+      "unit": "ops_per_second",
+      "scale": "log",
+      "higher_is_better": true,
+      "categories": [
+        "SQLite, NORMAL sync",
+        "SQLite, FULL sync",
+        "PostgreSQL, TCP",
+        "PostgreSQL, Unix socket"
+      ],
+      "series": [
+        {
+          "engine": "sqlite_wal_normal",
+          "label": "SQLite, NORMAL sync",
+          "color_dark": "#D95926",
+          "color_light": "#EB6834",
+          "hollow": false,
+          "points": [
+            {
+              "category": "SQLite, NORMAL sync",
+              "value": 34425.24661661447,
+              "min": 6625.517880789306,
+              "max": 35608.50682955138
+            }
+          ]
+        },
+        {
+          "engine": "sqlite_wal_full",
+          "label": "SQLite, FULL sync",
+          "color_dark": "#199E70",
+          "color_light": "#1BAF7A",
+          "hollow": false,
+          "points": [
+            {
+              "category": "SQLite, FULL sync",
+              "value": 1139.5595305490797,
+              "min": 1094.2416714042206,
+              "max": 1157.3842559715056
+            }
+          ]
+        },
+        {
+          "engine": "postgres",
+          "label": "PostgreSQL, TCP",
+          "color_dark": "#3987E5",
+          "color_light": "#2A78D6",
+          "hollow": false,
+          "points": [
+            {
+              "category": "PostgreSQL, TCP",
+              "value": 1190.6411104286856,
+              "min": 1148.1627646768832,
+              "max": 1213.6680386564872
+            }
+          ]
+        },
+        {
+          "engine": "postgres_unix",
+          "label": "PostgreSQL, Unix socket",
+          "color_dark": "#3987E5",
+          "color_light": "#2A78D6",
+          "hollow": true,
+          "points": [
+            {
+              "category": "PostgreSQL, Unix socket",
+              "value": 1183.70115432181,
+              "min": 847.6390702956818,
+              "max": 1220.1722505745322
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "concurrent-reads",
+      "title": "Reads as workers grow",
+      "subtitle": "total queries per second, higher is better. Bars show the min and max of 5 runs",
+      "form": "line",
+      "unit": "ops_per_second",
+      "scale": "linear",
+      "higher_is_better": true,
+      "categories": [
+        "1",
+        "4",
+        "16"
+      ],
+      "series": [
+        {
+          "engine": "sqlite_wal_normal",
+          "label": "SQLite, NORMAL sync",
+          "color_dark": "#D95926",
+          "color_light": "#EB6834",
+          "hollow": false,
+          "points": [
+            {
+              "category": "1",
+              "value": 181017.65945204426,
+              "min": 175597.11996283272,
+              "max": 190205.26507831336
+            },
+            {
+              "category": "4",
+              "value": 640638.8451806939,
+              "min": 622364.7309237022,
+              "max": 647851.3352314521
+            },
+            {
+              "category": "16",
+              "value": 858069.1144582735,
+              "min": 845232.96211898,
+              "max": 923399.1635678818
+            }
+          ]
+        },
+        {
+          "engine": "postgres",
+          "label": "PostgreSQL, TCP",
+          "color_dark": "#3987E5",
+          "color_light": "#2A78D6",
+          "hollow": false,
+          "points": [
+            {
+              "category": "1",
+              "value": 11295.396779682378,
+              "min": 8750.823666565157,
+              "max": 12084.253861492776
+            },
+            {
+              "category": "4",
+              "value": 33488.3090798011,
+              "min": 30978.57840403296,
+              "max": 34242.28482925435
+            },
+            {
+              "category": "16",
+              "value": 167087.90007330035,
+              "min": 166012.10302452336,
+              "max": 173581.61155036307
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "concurrent-writes",
+      "title": "Writes as workers grow",
+      "subtitle": "total inserts per second, higher is better. Bars show the min and max of 5 runs",
+      "form": "line",
+      "unit": "ops_per_second",
+      "scale": "linear",
+      "higher_is_better": true,
+      "categories": [
+        "1",
+        "4",
+        "16"
+      ],
+      "series": [
+        {
+          "engine": "sqlite_wal_normal",
+          "label": "SQLite, NORMAL sync",
+          "color_dark": "#D95926",
+          "color_light": "#EB6834",
+          "hollow": false,
+          "points": [
+            {
+              "category": "1",
+              "value": 24381.59515334733,
+              "min": 17358.285069694877,
+              "max": 25259.76050853214
+            },
+            {
+              "category": "4",
+              "value": 43710.51976378131,
+              "min": 36540.56254054863,
+              "max": 61172.46261491294
+            },
+            {
+              "category": "16",
+              "value": 40756.44183753432,
+              "min": 39237.14483738064,
+              "max": 42313.62613429414
+            }
+          ]
+        },
+        {
+          "engine": "sqlite_wal_full",
+          "label": "SQLite, FULL sync",
+          "color_dark": "#199E70",
+          "color_light": "#1BAF7A",
+          "hollow": false,
+          "points": [
+            {
+              "category": "1",
+              "value": 1096.9490563694833,
+              "min": 536.5739096838729,
+              "max": 1161.63371567006
+            },
+            {
+              "category": "4",
+              "value": 1390.0689096145434,
+              "min": 194.75328764715556,
+              "max": 1609.4415434930288
+            },
+            {
+              "category": "16",
+              "value": 1081.229812609641,
+              "min": 201.55363624878785,
+              "max": 1307.6729903806995
+            }
+          ]
+        },
+        {
+          "engine": "postgres",
+          "label": "PostgreSQL, TCP",
+          "color_dark": "#3987E5",
+          "color_light": "#2A78D6",
+          "hollow": false,
+          "points": [
+            {
+              "category": "1",
+              "value": 1135.6317078787413,
+              "min": 1028.4493679977843,
+              "max": 1160.0846861860916
+            },
+            {
+              "category": "4",
+              "value": 2731.537411899792,
+              "min": 912.0992054673724,
+              "max": 2759.53670018552
+            },
+            {
+              "category": "16",
+              "value": 7662.47991742938,
+              "min": 2720.162588835442,
+              "max": 10600.452145703886
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "write-failures",
+      "title": "SQLite with no busy timeout",
+      "subtitle": "share of inserts that failed with database is locked",
+      "form": "bar",
+      "unit": "share",
+      "scale": "linear",
+      "higher_is_better": false,
+      "categories": [
+        "1",
+        "4",
+        "16"
+      ],
+      "series": [
+        {
+          "engine": "sqlite_wal_nowait",
+          "label": "SQLite, no busy timeout",
+          "color_dark": "#D95926",
+          "color_light": "#EB6834",
+          "hollow": false,
+          "points": [
+            {
+              "category": "1",
+              "value": 0.0,
+              "min": 0.0,
+              "max": 0.0
+            },
+            {
+              "category": "4",
+              "value": 0.6945385858339249,
+              "min": 0.6921407017354987,
+              "max": 0.6988582317367158
+            },
+            {
+              "category": "16",
+              "value": 0.9456177350941266,
+              "min": 0.9400280501510754,
+              "max": 0.9477106554705977
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "write-latency-16",
+      "title": "Write latency with 16 writers",
+      "subtitle": "milliseconds per insert, lower is better, log scale. Closed loop service time",
+      "form": "percentile",
+      "unit": "ms",
+      "scale": "log",
+      "higher_is_better": false,
+      "categories": [
+        "p50",
+        "p90",
+        "p99",
+        "p99.9",
+        "max"
+      ],
+      "series": [
+        {
+          "engine": "sqlite_wal_normal",
+          "label": "SQLite, NORMAL sync",
+          "color_dark": "#D95926",
+          "color_light": "#EB6834",
+          "hollow": false,
+          "points": [
+            {
+              "category": "p50",
+              "value": 0.018,
+              "min": 0.018,
+              "max": 0.018
+            },
+            {
+              "category": "p90",
+              "value": 0.039,
+              "min": 0.037,
+              "max": 0.04
+            },
+            {
+              "category": "p99",
+              "value": 1.849,
+              "min": 0.172,
+              "max": 1.887
+            },
+            {
+              "category": "p99.9",
+              "value": 12.727,
+              "min": 8.319,
+              "max": 18.381
+            },
+            {
+              "category": "max",
+              "value": 4734.879531,
+              "min": 3933.631715,
+              "max": 5006.587095
+            }
+          ]
+        },
+        {
+          "engine": "sqlite_wal_full",
+          "label": "SQLite, FULL sync",
+          "color_dark": "#199E70",
+          "color_light": "#1BAF7A",
+          "hollow": false,
+          "points": [
+            {
+              "category": "p50",
+              "value": 0.739,
+              "min": 0.728,
+              "max": 5.682
+            },
+            {
+              "category": "p90",
+              "value": 1.518,
+              "min": 1.492,
+              "max": 6.232
+            },
+            {
+              "category": "p99",
+              "value": 36.488,
+              "min": 19.07,
+              "max": 1736.763131
+            },
+            {
+              "category": "p99.9",
+              "value": 2932.462139,
+              "min": 2531.955415,
+              "max": 4040.692985
+            },
+            {
+              "category": "max",
+              "value": 5009.11831,
+              "min": 4335.110388,
+              "max": 5021.521773
+            }
+          ]
+        },
+        {
+          "engine": "postgres",
+          "label": "PostgreSQL, TCP",
+          "color_dark": "#3987E5",
+          "color_light": "#2A78D6",
+          "hollow": false,
+          "points": [
+            {
+              "category": "p50",
+              "value": 1.527,
+              "min": 1.454,
+              "max": 5.733
+            },
+            {
+              "category": "p90",
+              "value": 5.634,
+              "min": 1.649,
+              "max": 6.207
+            },
+            {
+              "category": "p99",
+              "value": 6.291,
+              "min": 2.319,
+              "max": 8.564
+            },
+            {
+              "category": "p99.9",
+              "value": 8.742,
+              "min": 6.198,
+              "max": 18.892
+            },
+            {
+              "category": "max",
+              "value": 18.392515,
+              "min": 11.472121,
+              "max": 20.095668
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aggregates",
+      "title": "Reports over 1M rows",
+      "subtitle": "milliseconds per query, lower is better",
+      "form": "dot",
+      "unit": "ms",
+      "scale": "linear",
+      "higher_is_better": false,
+      "categories": [
+        "Count and sum by status, half the table",
+        "Top 10 users by spend, full table"
+      ],
+      "series": [
+        {
+          "engine": "sqlite_wal_normal",
+          "label": "SQLite, NORMAL sync",
+          "color_dark": "#D95926",
+          "color_light": "#EB6834",
+          "hollow": false,
+          "points": [
+            {
+              "category": "Count and sum by status, half the table",
+              "value": 151.444602,
+              "min": 144.341213,
+              "max": 155.749858
+            },
+            {
+              "category": "Top 10 users by spend, full table",
+              "value": 1130.28886,
+              "min": 1081.282275,
+              "max": 1174.658961
+            }
+          ]
+        },
+        {
+          "engine": "postgres",
+          "label": "PostgreSQL, TCP",
+          "color_dark": "#3987E5",
+          "color_light": "#2A78D6",
+          "hollow": false,
+          "points": [
+            {
+              "category": "Count and sum by status, half the table",
+              "value": 130.233396,
+              "min": 128.001932,
+              "max": 131.896551
+            },
+            {
+              "category": "Top 10 users by spend, full table",
+              "value": 1778.685619,
+              "min": 1698.174684,
+              "max": 1794.902824
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

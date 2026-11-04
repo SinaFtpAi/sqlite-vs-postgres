@@ -1,0 +1,340 @@
+# Every number and name the benchmark uses. Read only by src/dbbench/config.py.
+# YAML 1.1 reads an unquoted on/off as a boolean and an unquoted timestamp as a date, so those are quoted.
+
+# Where things live. work_dir holds the PostgreSQL cluster and the SQLite file. It must be on a disk
+# filesystem: the guard refuses tmpfs and ramfs, because a RAM disk would hide the fsync cost.
+# protected_paths lists folders the guard must never overlap (equal, inside or containing).
+paths:
+  work_dir: "~/.cache/dbbench"
+  results_dir: "results"
+  protected_paths: []
+
+# dbbench install: the PostgreSQL and SQLite sources, from their official sites, checked against their
+# hashes and built into cache_dir. Sources go to <cache_dir>/src, the PostgreSQL build to
+# <cache_dir>/postgresql-<version>, and the pysqlite3 build to <cache_dir>/pysqlite3-sqlite-<version>.
+install:
+  cache_dir: "~/.cache/dbbench"
+  download_timeout_seconds: 120
+  # The Python version the pysqlite3 wheel is built for: the project's Python.
+  wheel_python: "3.12"
+  postgres:
+    version: "18.6"
+    url: "https://ftp.postgresql.org/pub/source/v18.6/postgresql-18.6.tar.bz2"
+    sha256: "555610c24d53e4316da5b7d3fc25c279d96856d5e0e23ee308c328c5fa881d9f"
+    # The flags of ./configure. dbbench adds --prefix. None of these features is used by the tests.
+    configure_flags: ["--without-readline", "--without-zlib", "--without-icu", "--without-zstd", "--without-lz4"]
+  sqlite:
+    version: "3.54.1"
+    url: "https://www.sqlite.org/2026/sqlite-amalgamation-3540100.zip"
+    sha3_256: "92281c86e2957f9b9305890f9ac04204caa7b677cc868dc326d942689df28e30"
+  pysqlite3:
+    version: "0.6.1"
+    url: "https://files.pythonhosted.org/packages/28/43/6f1f3adc88f9f77a0f49a2959f6aac5f56900da5e60c65fa6fbcc9c0afae/pysqlite3-0.6.1.tar.gz"
+    sha256: "dd7d2b7f3a29aebdbf569c359658b091d3345b5691d9ea765a5c3febe8872bf9"
+    # Lines of setup.py that are deleted before the build. SQLite's temp store keeps its default, so
+    # sorts are not forced into memory.
+    remove_setup_lines: ["('SQLITE_TEMP_STORE', 3),"]
+  # Extra environment for the PostgreSQL build. A PATH entry is put in front of the current PATH.
+  # Values may use ~.
+  build_env: {}
+
+# dbbench install builds the sources in the install section below. bin_dir null means those binaries,
+# in <install.cache_dir>/postgresql-<install.postgres.version>/bin. Set bin_dir to a folder with your
+# own PostgreSQL binaries to use that instead. The bench cluster is its own cluster on its own port;
+# it never touches another one.
+# The PostgreSQL server. Its settings are the production values of the author's site (a 256 MB, 1 core server running PostgreSQL 18),
+# except max_connections (16 workers plus the runner must fit). fsync and synchronous_commit stay on.
+# timezone is UTC, so timestamps read back the same on both engines.
+# prepare_threshold 0 makes psycopg prepare every statement at once, like the SQLite statement cache.
+postgres:
+  bin_dir: null
+  host: "127.0.0.1"
+  port: 55433
+  user: "bench"
+  database: "bench"
+  # Under work_dir: the cluster folder holds the socket directory, the data folder and the log file.
+  cluster_dir: "pg"
+  data_dir: "data"
+  log_file: "log"
+  prepare_threshold: 0
+  settings:
+    max_connections: 50
+    shared_buffers: "64MB"
+    effective_cache_size: "512MB"
+    work_mem: "2MB"
+    maintenance_work_mem: "32MB"
+    max_parallel_workers_per_gather: 0
+    max_parallel_workers: 0
+    max_parallel_maintenance_workers: 0
+    jit: "off"
+    random_page_cost: 1.1
+    effective_io_concurrency: 200
+    wal_compression: "on"
+    checkpoint_completion_target: 0.9
+    min_wal_size: "64MB"
+    max_wal_size: "512MB"
+    fsync: "on"
+    synchronous_commit: "on"
+    timezone: "UTC"
+
+# SQLite: one file in WAL mode. The variants only change the per connection pragmas.
+# cache_size_kib is the same 64 MiB as PostgreSQL shared_buffers. mmap_size_bytes 0 turns memory
+# mapping off, so reads go through the page cache like PostgreSQL's. cached_statements is the
+# statement cache size passed to sqlite3.connect (the Python default, written out here).
+sqlite:
+  # pysqlite3 is the SQLite module that dbbench install builds (SQLite 3.54.1). stdlib is Python's own
+  # sqlite3; the tests use it, so they need no build.
+  driver: "pysqlite3"
+  file_name: "bench.sqlite3"
+  cache_size_kib: 65536
+  mmap_size_bytes: 0
+  cached_statements: 128
+  # Error texts that count as a lock failure in the concurrent scenarios. The op fails, the worker goes on.
+  lock_error_messages: ["database is locked", "database is busy"]
+  variants:
+    sqlite_wal_normal: {synchronous: "NORMAL", busy_timeout_ms: 5000}
+    sqlite_wal_full: {synchronous: "FULL", busy_timeout_ms: 5000}
+    sqlite_wal_nowait: {synchronous: "NORMAL", busy_timeout_ms: 0}
+
+# Names shown to readers in summary.md. The raw results keep the engine ids.
+labels:
+  sqlite_wal_normal: "SQLite (WAL, synchronous NORMAL)"
+  sqlite_wal_full: "SQLite (WAL, synchronous FULL, same durability as PostgreSQL)"
+  sqlite_wal_nowait: "SQLite (WAL, NORMAL, no busy timeout)"
+  postgres: "PostgreSQL (TCP)"
+  postgres_unix: "PostgreSQL (Unix socket)"
+
+# The data set. The generator draws the values in a fixed order, so every engine gets the same rows.
+# statuses maps each status to its weight, in this order. amount_cents is inclusive at both ends.
+dataset:
+  rows: 1000000
+  users: 100000
+  batch_size: 10000
+  note_length: 100
+  note_alphabet: "abcdefghijklmnopqrstuvwxyz "
+  seed: 42
+  start: "2025-01-01T00:00:00+00:00"
+  span_days: 365
+  amount_cents: {minimum: 100, maximum: 50000}
+  statuses: {paid: 70, pending: 20, refunded: 5, cancelled: 5}
+
+# Row limits of the two read queries. The SQL takes them as parameters.
+queries:
+  user_read_limit: 20
+  top_users_limit: 10
+
+# Waiting for the disk to go quiet before each measured run. The runner checkpoints the database,
+# syncs the operating system's dirty pages, then polls the Dirty line of meminfo until it is at most
+# dirty_max_kib (or the timeout passes), and sleeps min_seconds. meminfo is skipped where it does not exist.
+settle:
+  dirty_max_kib: 16384
+  poll_seconds: 0.1
+  timeout_seconds: 30
+  min_seconds: 1
+
+# How the scenarios run. Timed scenarios use warmup_seconds and duration_seconds, count-based ones
+# use the *_ops values. Every scenario is repeated `repeats` times and the report shows the median,
+# with the min and max in summary.json.
+run:
+  repeats: 5
+  warmup_seconds: 1
+  duration_seconds: 10
+  single_insert_ops: 5000
+  point_read_ops: 50000
+  user_read_ops: 20000
+  aggregate_runs: 5
+  concurrency_levels: [1, 4, 16]
+  mixed_workers: 16
+  mixed_read_share: 0.9
+  # Untimed operations each count-based worker runs first, so connections and caches are warm.
+  count_warmup_ops: 200
+  # Pause after pg_ctl start, so the idle memory reading is taken once the server has settled.
+  footprint_settle_seconds: 2
+  # Seed of the engine order shuffle. Each scenario, repeat and worker level gets its own order.
+  order_seed: 7
+  # Latency histogram: 1 microsecond buckets up to 100 ms. Larger values are kept as a raw list.
+  latency:
+    bucket_us: 1
+    range_ms: 100
+
+# Which engines each scenario measures.
+engines_by_scenario:
+  footprint: [postgres, sqlite_wal_normal]
+  seed: [sqlite_wal_normal, postgres]
+  single_insert: [sqlite_wal_normal, sqlite_wal_full, postgres, postgres_unix]
+  point_read: [sqlite_wal_normal, postgres, postgres_unix]
+  user_read: [sqlite_wal_normal, postgres, postgres_unix]
+  aggregate: [sqlite_wal_normal, postgres]
+  concurrent_read: [sqlite_wal_normal, postgres]
+  concurrent_write: [sqlite_wal_normal, sqlite_wal_full, sqlite_wal_nowait, postgres]
+  mixed: [sqlite_wal_normal, postgres]
+
+# Overrides for --quick, the smoke run. Only these values change; everything else is as above.
+quick:
+  dataset:
+    rows: 50000
+    users: 5000
+  run:
+    repeats: 1
+    duration_seconds: 2
+    single_insert_ops: 500
+    point_read_ops: 5000
+    user_read_ops: 2000
+    aggregate_runs: 2
+
+# Charts: `dbbench charts` draws static SVG charts (one dark and one light file each) from summary.json
+# and machine.json, and writes charts.json with the same numbers. Every size, color, font size and piece
+# of chart text is in this block. _in values are inches on the figure, _px values are pixels at dpi,
+# _pt values are points. Alphas are 0 to 1.
+charts:
+  # Short engine names for legends and direct labels; the tables and docs use the long `labels`.
+  series_labels:
+    sqlite_wal_normal: "SQLite, NORMAL sync"
+    sqlite_wal_full: "SQLite, FULL sync"
+    sqlite_wal_nowait: "SQLite, no busy timeout"
+    postgres: "PostgreSQL, TCP"
+    postgres_unix: "PostgreSQL, Unix socket"
+  figure:
+    width_in: 10
+    dpi: 100
+    # Left edge of the title, subtitle, legend and footer, as a fraction of the figure width.
+    margin_x: 0.04
+    # A fixed salt, so the same data always gives the same SVG bytes.
+    svg_hashsalt: "dbbench"
+    # Figure heights: plot charts are plot_height_in tall; dot plots are dot_base_height_in plus
+    # dot_row_height_in for each row.
+    plot_height_in: 5.6
+    dot_base_height_in: 1.9
+    dot_row_height_in: 0.85
+  header:
+    title_top_in: 0.30
+    subtitle_top_in: 0.74
+    legend_top_in: 1.04
+    # Where the plot starts from the top, with and without a legend row.
+    plot_top_legend_in: 1.42
+    plot_top_in: 1.12
+    # One more legend row (when the labels do not fit on one) moves the plot down by this much.
+    legend_row_in: 0.28
+  footer:
+    bottom_in: 0.22
+    template: "SQLite {sqlite} · PostgreSQL {postgres} · {cpu}, {filesystem} · median of {runs} · {url}"
+    project_url: "github.com/SinaFtpAi/sqlite-vs-postgres"
+  axes:
+    # Plot charts (line, bar, percentile): the plot starts plot_bottom_in above the bottom edge.
+    plot_bottom_in: 0.95
+    line_left_in: 0.95
+    # Room at the right end for the direct labels of lines, and for the bars (no labels there).
+    line_right_in: 3.2
+    bar_right_in: 0.4
+    # Dot plots: the row labels sit in the margin and the label column, the plot starts at dot_left_in.
+    dot_bottom_in: 0.70
+    dot_left_in: 2.8
+    dot_ratio_right_in: 2.9
+    dot_plain_right_in: 0.4
+    # Value axes: the number of tick steps aimed at, and the room above the largest value.
+    count_ticks: 5
+    bar_ticks: 4
+    dot_headroom: 1.12
+    line_headroom: 1.12
+  marks:
+    marker_px: 10
+    marker_ring_px: 2
+    line_px: 2
+    connector_px: 2
+    spread_px: 1.5
+    spread_cap_px: 6
+    grid_px: 1
+    legend_dot_px: 10
+    legend_label_gap_px: 8
+    legend_item_gap_px: 24
+    # Value labels: the gap from the dot's edge, and the gap between a label and the next one above it.
+    value_gap_px: 4
+    value_lane_gap_px: 6
+    # Direct labels at the right end of a line: the offset from the point, and the gap between blocks.
+    direct_offset_px: 10
+    direct_gap_px: 4
+    ratio_gap_px: 16
+    bar_width: 0.5
+    grid_alpha: 0.10
+    axis_alpha: 0.18
+    # Multi-line text: the line height as a multiple of the font size, and the wrap widths in characters.
+    line_spacing: 1.2
+    label_wrap_chars: 26
+    direct_wrap_chars: 36
+  fonts:
+    family: "DejaVu Sans"
+    title_pt: 18
+    title_weight: "bold"
+    subtitle_pt: 12
+    legend_pt: 11
+    footer_pt: 9
+    tick_pt: 10
+    axis_label_pt: 10
+    row_label_pt: 11
+    direct_label_pt: 11
+    value_label_pt: 10
+    bar_value_pt: 11
+    ratio_pt: 11
+    ratio_weight: "bold"
+  themes:
+    dark:
+      surface: "#0A0A0D"
+      text: "#F3EBCF"
+      text_secondary: "#C9C3AE"
+      muted: "#8F8B80"
+      grid: "#F3EBCF"
+      axis: "#F3EBCF"
+    light:
+      surface: "#FCFAF4"
+      text: "#16150F"
+      text_secondary: "#52514E"
+      muted: "#7A7870"
+      grid: "#16150F"
+      axis: "#16150F"
+  # Series colors by engine. Colorblind checked, at most three series in one chart. A hollow marker
+  # has the surface color inside and its outline in the series color.
+  series:
+    sqlite_wal_normal: {dark: "#D95926", light: "#EB6834", hollow: false}
+    sqlite_wal_full: {dark: "#199E70", light: "#1BAF7A", hollow: false}
+    sqlite_wal_nowait: {dark: "#D95926", light: "#EB6834", hollow: false}
+    postgres: {dark: "#3987E5", light: "#2A78D6", hollow: false}
+    postgres_unix: {dark: "#3987E5", light: "#2A78D6", hollow: true}
+  wording:
+    workers_label: "workers (separate processes)"
+    runs_one: "{count} run"
+    runs_many: "{count} runs"
+    ratio_faster: "{ratio}x faster in {engine}"
+    # Names of the engines in the ratio note, for example "in SQLite".
+    engine_ratio_names:
+      sqlite_wal_normal: "SQLite"
+      postgres: "PostgreSQL"
+    milliseconds_suffix: " ms"
+    thousand_suffix: "k"
+    million_suffix: "M"
+    row_labels:
+      point_read: "Read one order by id"
+      user_read: "Newest {user_read_limit} orders of one user"
+      status: "Count and sum by status, half the table"
+      top_users: "Top {top_users_limit} users by spend, full table"
+    titles:
+      single-client-reads:
+        title: "Reads from one client"
+        subtitle: "queries per second, higher is better, log scale"
+      single-insert:
+        title: "Inserts from one client, one commit each"
+        subtitle: "inserts per second, higher is better, log scale"
+      concurrent-reads:
+        title: "Reads as workers grow"
+        subtitle: "total queries per second, higher is better. Bars show the min and max of {runs}"
+      concurrent-writes:
+        title: "Writes as workers grow"
+        subtitle: "total inserts per second, higher is better. Bars show the min and max of {runs}"
+      write-failures:
+        title: "SQLite with no busy timeout"
+        subtitle: "share of inserts that failed with database is locked"
+      write-latency-16:
+        title: "Write latency with {workers} writers"
+        subtitle: "milliseconds per insert, lower is better, log scale. Closed loop service time"
+      aggregates:
+        title: "Reports over {rows} rows"
+        subtitle: "milliseconds per query, lower is better"
